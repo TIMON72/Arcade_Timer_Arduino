@@ -1,0 +1,7 @@
+{
+    "board": "esp8266:esp8266:d1_mini_pro",
+    "programmer": "avrisp",
+    "port": "COM7",
+    "sketch": "Arcade_Timer_Arduino.ino",
+    "configuration": "xtal=80,vt=flash,exception=disabled,stacksmash=disabled,ssl=all,mmu=3232,non32xfer=fast,eesz=16M14M,ip=lm2f,dbg=Serial,lvl=None____,wipe=all,baud=921600"
+}

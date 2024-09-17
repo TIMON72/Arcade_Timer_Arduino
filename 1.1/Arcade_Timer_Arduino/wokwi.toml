@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'bin/Arcade_Timer_Arduino.ino.hex'
+elf = 'bin/Arcade_Timer_Arduino.ino.elf'

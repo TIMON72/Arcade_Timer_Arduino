@@ -1,0 +1,7 @@
+{
+    "sketch": "Arcade_Timer_Arduino.ino",
+    "board": "arduino:avr:nano",
+    "port": "COM5",
+    "programmer": "avrisp",
+    "configuration": "cpu=atmega168"
+}
