@@ -1,37 +1,27 @@
-
 /**
- * @file Arcade_Timer.ino
+ * @file Arcade_Timer_Arduino.ino
  * @author Радионов Тимофей (rtv2506@yandex.ru)
- * @brief Таймер ESP8266 Uno D1 для игрового автомата "Аркада"
- * @version 1.1
- * @date 2024-09-01
+ * @brief Таймер Wemos D1 R32 (ESP32) для игрового автомата "Аркада"
+ * @version 1.2
+ * @date 2026-04-02
  *
- * @copyright Copyright (c) 2024
+ * @copyright Copyright (c) 2026
  *
  */
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <ArduinoOTA.h>
 #include <GyverMAX7219.h>
 #include <RunningGFX.h>
 /// @defgroup Назначение пинов Ардуино
-const int D_0 = 3;
-const int D_1 = 1;
-const int D_2 = 16;
-const int D_3 = 5;
-const int D_4 = 4;
-const int D_5 = 14;
-const int D_10 = 15;
-const int D_11 = 13;
-const int D_12 = 12;
-#define R_IN1to6_BUTTONS D_0 // 0 Реле IN1-IN6
-#define R_IN7_PLAYPAUSE D_1  // 1 Реле IN7
-#define R_IN8_STOP D_2       // 2 Реле IN8
-#define MATRIX_CLK D_3       // 3 Таймер CLK
-#define MATRIX_CS D_4        // 4 Матрица CS
-#define MATRIX_DIO D_5       // 5 Таймер DIO
-#define RF_INCREASE D_10     // 10 Кнопка "+" (Ардуино)
-#define RF_PLAYPAUSE D_11    // 11 Кнопка "Play/Pause" (Ардуино)
-#define RF_STOP D_12         // 12 Кнопка "Stop" (Ардуино)
+#define R_IN1to6_BUTTONS 3 // 0 Реле IN1-IN6
+#define R_IN7_PLAYPAUSE 1  // 1 Реле IN7
+#define R_IN8_STOP 26      // 2 Реле IN8
+#define MATRIX_CLK 25      // 3 Таймер CLK
+#define MATRIX_CS 17       // 4 Матрица CS
+#define MATRIX_DIO 16      // 5 Таймер DIO
+#define RF_INCREASE 23     // 10 Кнопка "+" (Ардуино)
+#define RF_PLAYPAUSE 19    // 11 Кнопка "Play/Pause" (Ардуино)
+#define RF_STOP 18         // 12 Кнопка "Stop" (Ардуино)
 // #define RF_UNLIMITED 2 //2
 /// @brief Класс таймера
 class Timer
@@ -378,6 +368,7 @@ bool waited = false;        // Флаг: активность ожидающег
 void setup()
 {
     Serial.begin(115200);
+    printf("Arduino started\n");
     WiFi.begin("MSU", "MSUWiFiPass");
     ArduinoOTA.begin();
     // Инициализация режимов работы пинов
@@ -452,8 +443,6 @@ void action(int signal)
         if (!start)
         {
             Serial.println("START");
-            Serial.println("WiFi local IP: ");
-            Serial.println(WiFi.localIP());
             //  Таймер не настроен? (00:00)
             if (hours == 0 && minutes == 0 && seconds == 0)
                 break;
